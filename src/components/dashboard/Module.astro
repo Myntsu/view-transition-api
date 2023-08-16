@@ -1,4 +1,7 @@
 ---
+// astro imports
+import { Icon } from 'astro-icon';
+
 // json imports
 import modules from "../../json/modules.json";
 
@@ -49,11 +52,13 @@ const moduleData = Object.values(modules)
           <hr />
           <div class="duration">
             <p>
-              <i class="fa-solid fa-calendar-days" /> Comienzo
+              <Icon class="icon" name="ic:baseline-calendar-month" /> 
+              Comienzo
               <span class="date">{module.startingDate}</span>
             </p>
             <p>
-              <i class="fa-solid fa-square-check" /> Término
+              <Icon class="icon" name="ic:sharp-flag" />
+              Término
               <span class="date">{module.endingDate}</span>
             </p>
           </div>
@@ -147,6 +152,7 @@ const moduleData = Object.values(modules)
 
         p {
           display: flex;
+          gap: .25rem;
 
           i {
             flex: 0 0 2ch;

@@ -1,24 +1,48 @@
-<footer transition:persist >
-    <nav>
-        <a
-        href="/"
-        class="active">
-        <i transition:name="icon-house" class="fa-solid fa-house"></i>
-        <span class="text">Inicio</span>
-        </a>
-        <a href="">
-        <i transition:name="icon-fist" class="fa-solid fa-hand-fist"></i>
-        <span class="text">Desafíos</span>
-        </a>
-        <a href="">
-        <i transition:name="icon-cap" class="fa-solid fa-graduation-cap"></i>
-        <span class="text">Cursos</span>
-        </a>
-        <a href="/payments">
-        <i transition:name="icon-bill" class="fa-solid fa-money-bill"></i>
-        <span class="text">Pagos</span>
-        </a>
-    </nav>
+---
+// astro imports
+import { Icon } from "astro-icon";
+---
+
+<footer>
+  <nav>
+    <a
+      transition:persist
+      href="/"
+      class="active">
+      <Icon
+        class="icon"
+        name="ic:baseline-house"
+      />
+      <span class="text">Inicio</span>
+    </a>
+    <a
+      transition:persist 
+      href="/challenges">
+      <Icon
+        class="icon"
+        name="ic:baseline-text-snippet"
+      />
+      <span class="text">Desafíos</span>
+    </a>
+    <a
+      transition:persist 
+      href="/courses">
+      <Icon
+        class="icon"
+        name="ic:baseline-menu-book"
+      />
+      <span class="text">Cursos</span>
+    </a>
+    <a
+      transition:persist
+      href="/payments">
+      <Icon
+        class="icon"
+        name="ic:baseline-attach-money"
+      />
+      <span class="text">Pagos</span>
+    </a>
+  </nav>
 </footer>
 
 <style lang="scss">
@@ -44,6 +68,10 @@
         text-decoration: none;
         padding-block: 0.75rem;
 
+        .icon {
+          width: 28px;
+        }
+
         .text {
           font-size: 0.75rem;
         }
@@ -63,3 +91,28 @@
     }
   }
 </style>
+
+<script>
+const links = document.querySelectorAll('a');
+
+const updateActiveLink = () => {
+  console.log('Updating active link...');
+
+  const currentPage = window.location.pathname;
+
+  links.forEach(link => {
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+};
+
+
+// Runs on initial navigation
+document.addEventListener('astro:load', () => {
+  console.log('astro:load event fired');
+  updateActiveLink();
+});
+</script>

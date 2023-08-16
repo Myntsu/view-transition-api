@@ -19,14 +19,8 @@ const { title, description } = Astro.props as Props;
   />
   <body>
     <main>
-      <Nav />
       <slot />
+      <Nav />
     </main>
-
-    <script
-      transition:persist
-      src="https://kit.fontawesome.com/76c49369ed.js"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

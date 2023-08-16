@@ -1,3 +1,8 @@
+---
+// astro imports
+import { Icon } from "astro-icon";
+---
+
 <section class="user-feedback">
   <h1>
     Desafíos pendientes:
@@ -12,20 +17,23 @@
   <div class="notifications">
     <div>
       <p>
-        <i class="fa-solid fa-bell"></i> Brayan ha revisado tu desafío <i
-          class="fa-solid fa-plus"></i>
+        <Icon class="icon" name="ic:baseline-notifications-active" /> 
+        Brayan ha revisado tu desafío 
+        <Icon class="icon" name="ic:baseline-plus" />
       </p>
     </div>
     <div>
       <p>
-        <i class="fa-solid fa-bell"></i> Módulo 6 cierra en 2 días <i
-          class="fa-solid fa-plus"></i>
+        <Icon class="icon" name="ic:baseline-notifications-active" /> 
+        Módulo 6 cierra en 2 días 
+        <Icon class="icon" name="ic:baseline-plus" />
       </p>
     </div>
     <div>
       <p>
-        <i class="fa-solid fa-bell"></i> Brayan ha revisado tu desafío <i
-          class="fa-solid fa-plus"></i>
+        <Icon class="icon" name="ic:baseline-notifications-active" /> 
+        Brayan ha revisado tu desafío 
+        <Icon class="icon" name="ic:baseline-plus" />
       </p>
     </div>
   </div>
@@ -86,6 +94,10 @@
         display: flex;
         gap: 0.5rem;
         color: hsl(var(--main-light));
+
+        .icon {
+          width: 20px; 
+        }
 
         & > :last-child {
           margin-inline-start: auto;

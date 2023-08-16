@@ -5,9 +5,18 @@ import { Icon } from 'astro-icon';
 // compontent imports
 import Module from "./Module.astro";
 
+const buttonInfo = {
+  g4: "G4",
+  g8: "G8",
+  presencial: "Presencial",
+  remoto: "Remoto",
+  diurno: "Diurno",
+  vespertino: "Vespertino",
+};
+
 const {
   plusIcon = "ic:outline-plus",
-  crossIcon= "ic:baseline-close"
+  crossIcon = "ic:baseline-close"
 } = Astro.props;
 
 ---
@@ -20,7 +29,7 @@ const {
       placeholder="Buscar: Modulo 1"
       name="search"
     />
-    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button type="submit"><Icon class="icon" name="ic:baseline-search" /></button>
   </div>
 
   <div class="filters">
@@ -33,36 +42,13 @@ const {
     </div>
   </div>
   <div class="list-of-filters">
-    <button class="tag" data-add="g4">
-      <Icon class="icon plus" name={plusIcon} />
-      <span>G4</span>
-      <Icon class="icon cross" name={crossIcon} />
-    </button>
-    <button class="tag" data-add="g8">
-      <Icon class="icon plus" name={plusIcon} />
-      <span>G8</span>
-      <Icon class="icon cross" name={crossIcon} />
-    </button>
-    <button class="tag" data-add="presencial">
-      <Icon class="icon plus" name={plusIcon} />
-      <span>Presencial</span>
-      <Icon class="icon cross" name={crossIcon} />
-    </button>
-    <button class="tag" data-add="remoto">
-      <Icon class="icon plus" name={plusIcon} />
-      <span>Remoto</span>
-      <Icon class="icon cross" name={crossIcon} />
-    </button>
-    <button class="tag" data-add="diurno">
-      <Icon class="icon plus" name={plusIcon} />
-      <span>Diurno</span>
-      <Icon class="icon cross" name={crossIcon} />
-    </button>
-    <button class="tag" data-add="vespertino">
-      <Icon class="icon plus" name={plusIcon} />
-      <span>Vespertino</span>
-      <Icon class="icon cross" name={crossIcon} />
-    </button>
+    {Object.entries(buttonInfo).map(([key, value]) => (
+      <button class="tag" data-add={key}>
+        <Icon class="icon plus" name={plusIcon} />
+        <span>{value}</span>
+        <Icon class="icon cross" name={crossIcon} />
+      </button>
+    ))}
   </div>
   <div class="modules-section">
     <Module />
@@ -99,6 +85,7 @@ const {
     }
 
     &:is([data-close]) {
+      padding-inline-start: .5rem;
       &:is(:hover, :focus-visible) {
         background-color: hsl(var(--danger));
       }
@@ -109,6 +96,7 @@ const {
     }
 
     &:is([data-add]) {
+      padding-inline-end: .5rem;
       background-color: hsl(var(--inactive));
 
       &:is(:hover, :focus-visible) {
@@ -180,12 +168,13 @@ const {
         }
 
         &:is(:active) {
-          i {
-            scale: 0.95;
+          .icon {
+            scale: 0.9;
           }
         }
 
-        i {
+        .icon {
+          width: 22px;
           color: hsl(var(--main-light));
         }
       }

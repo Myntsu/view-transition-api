@@ -1,3 +1,8 @@
+---
+// astro imports
+import { Icon } from 'astro-icon'
+---
+
 <div class="main-background"></div>
 <header>
   <div class="user">
@@ -10,7 +15,7 @@
     <span class="user-welcome">Hola Luis 👋</span>
   </div>
   <div class="settings">
-    <i class="fa-solid fa-gear"></i>
+    <Icon class="icon" name="ic:baseline-settings" />
   </div>
 </header>
 
@@ -31,8 +36,8 @@
     color: hsl(var(--main-light));
     padding: 1rem;
 
-    .fa-solid {
-      font-size: 1.55rem;
+    .icon {
+      width: 32px;
     }
 
     .user {
@@ -67,7 +72,7 @@
       color: hsl(0 0% 100%);
       cursor: pointer;
 
-      i {
+      .icon {
         position: relative;
         top: 50%;
         left: 50%;
