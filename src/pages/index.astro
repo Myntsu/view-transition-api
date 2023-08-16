@@ -1,15 +1,28 @@
 ---
+// astro imports
+import { fade } from "astro:transitions";
+
+import Layout from "../layouts/Layout.astro";
+
+// component imports
+import Header from "../components/dashboard/Header.astro";
+import UserFeedback from "../components/dashboard/UserFeedback.astro";
+import Courses from "../components/dashboard/Courses.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  transition:animate={fade({ duration: "0.2s" })}
+  title="Home"
+  description="hello">
+	<Header />
+	<div class="sections">
+		<UserFeedback />
+		<Courses />
+	</div>
+</Layout>
+
+<style lang="scss">
+  .sections {
+    padding-inline: 2rem;
+  }
+</style>

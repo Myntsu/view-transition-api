@@ -1,0 +1,97 @@
+<section class="user-feedback">
+  <h1>
+    Desafíos pendientes:
+    <span class="desafios-pendientes"> 4</span>
+  </h1>
+  <h2>
+    Cursos activos:
+    <span class="cursos-activos">1</span>
+  </h2>
+  <hr />
+  <h3>Notificaciones</h3>
+  <div class="notifications">
+    <div>
+      <p>
+        <i class="fa-solid fa-bell"></i> Brayan ha revisado tu desafío <i
+          class="fa-solid fa-plus"></i>
+      </p>
+    </div>
+    <div>
+      <p>
+        <i class="fa-solid fa-bell"></i> Módulo 6 cierra en 2 días <i
+          class="fa-solid fa-plus"></i>
+      </p>
+    </div>
+    <div>
+      <p>
+        <i class="fa-solid fa-bell"></i> Brayan ha revisado tu desafío <i
+          class="fa-solid fa-plus"></i>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+.user-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  height: 155px;
+  padding: 0.5rem;
+  padding-block-end: 0;
+  color: hsl(var(--text));
+  background: hsl(var(--main-light));
+  border: 1px solid hsl(var(--main-light));
+
+  box-shadow: 2px 2px 10px hsl(var(--main-shadow) / 0.5);
+
+  h1,
+  h2,
+  h3 {
+    display: flex;
+
+    span {
+      margin-inline-start: auto;
+    }
+  }
+
+  h2 {
+    color: hsl(var(--text-gray));
+  }
+
+  hr {
+    width: 75%;
+  }
+
+  h3 {
+    color: hsl(var(--important));
+    text-transform: uppercase;
+    gap: 0.25rem;
+  }
+
+  .notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    overflow: hidden;
+
+    & > div {
+      padding: 0.5rem;
+      background-color: hsl(var(--important));
+      border-radius: 0.25rem;
+      cursor: pointer;
+
+      p {
+        display: flex;
+        gap: 0.5rem;
+        color: hsl(var(--main-light));
+
+        & > :last-child {
+          margin-inline-start: auto;
+        }
+      }
+    }
+  }
+}
+</style>

@@ -1,0 +1,280 @@
+---
+import Module from "./Module.astro";
+---
+
+<section class="courses">
+  <h2>Cursos</h2>
+  <div class="search-form">
+    <input
+      type="text"
+      placeholder="Modulo 1"
+      name="search"
+    />
+    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+
+  <div class="filters">
+    <div class="white-blur"></div>
+    <div class="wrapper">
+      <button class="tag filter" data-open>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <h2>Filtros:</h2>
+    </div>
+  </div>
+  <div class="list-of-filters">
+    <button class="tag" data-add="g4">
+      <i class="fa-solid fa-plus"></i>
+      <span>G4</span>
+    </button>
+    <button class="tag" data-add="g8">
+      <i class="fa-solid fa-plus"></i>
+      <span>G8</span>
+    </button>
+    <button class="tag" data-add="presencial">
+      <i class="fa-solid fa-plus"></i>
+      <span>Presencial</span>
+    </button>
+    <button class="tag" data-add="remoto">
+      <i class="fa-solid fa-plus"></i>
+      <span>Remoto</span>
+    </button>
+    <button class="tag" data-add="diurno">
+      <i class="fa-solid fa-plus"></i>
+      <span>Diurno</span>
+    </button>
+    <button class="tag" data-add="vespertino">
+      <i class="fa-solid fa-plus"></i>
+      <span>Vespertino</span>
+    </button>
+  </div>
+  <Module />
+</section>
+
+<style lang="scss">
+  .tag {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    color: hsl(var(--main-light));
+    background-color: hsl(var(--main-color));
+    border: none;
+    border-radius: 0.15rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+    line-height: 1;
+    user-select: none;
+
+    &:is(:active) {
+        scale: 0.95;
+    }
+
+    &:is(:hover, :focus-visible) {
+      opacity: 0.9;
+    }
+
+    &:is([data-close]) {
+      &:is(:hover, :focus-visible) {
+        background-color: hsl(var(--danger));
+      }
+    }
+
+    &:is([data-add]) {
+        background-color: hsl(var(--inactive));
+      &:is(:hover, :focus-visible) {
+        background-color: hsl(var(--important));
+      }
+    }
+  }
+
+  .courses {
+    h2 {
+      color: hsl(var(--text));
+      font-size: 0.9rem;
+      margin-block-end: 0.25rem;
+    }
+
+    &:has(.show) {
+      .filters {
+        margin-block-end: .5rem;
+      }
+    }
+
+    .search-form {
+      display: flex;
+      margin-block-end: 0.5rem;
+      border-radius: 0.5rem;
+
+      &:is(:hover, :focus, :focus-visible) {
+        input {
+          border: 1px solid hsl(var(--important));
+        }
+      }
+
+      input {
+        all: unset;
+        display: grid;
+        place-items: center;
+        border: none;
+        width: 100%;
+        font-family: inherit;
+        padding-inline: 0.5rem;
+        border: 1px solid hsl(var(--important) / 0.5);
+        border-radius: 0.5rem 0 0 0.5rem;
+
+        &::placeholder {
+          font-size: 0.75rem;
+        }
+      }
+
+      button {
+        all: unset;
+        display: grid;
+        place-items: center;
+        padding: 0.5rem;
+        background-color: hsl(var(--important));
+        border-radius: 0 0.5rem 0.5rem 0;
+
+        cursor: pointer;
+
+        &:is(:hover, :focus-visible) {
+          opacity: 0.95;
+        }
+
+        &:is(:active) {
+          i {
+            scale: 0.95;
+          }
+        }
+
+        i {
+          color: hsl(var(--main-light));
+        }
+      }
+    }
+
+    .filters {
+      margin-block-end: 1rem;
+      position: relative;
+
+      .white-blur {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 1rem;
+        background-image: linear-gradient(
+          to right,
+          transparent,
+          hsl(var(--main-light))
+        );
+        z-index: 1;
+      }
+
+      .wrapper {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        width: 100%;
+        height: 100%;
+        overflow-x: auto;
+        z-index: 2;
+
+        h2 {
+          font-size: 0.75rem;
+          line-height: 0;
+        }
+      }
+    }
+
+    .list-of-filters {
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+      height: 0px;
+
+      overflow-y: hidden;
+
+      
+      &:is(.show) {
+        translate: 0% 0%;
+        height: 50px;
+        border-radius: .25rem;
+        margin-block-end: 1rem;
+      }
+    }
+  }
+</style>
+
+<script>
+const openButton = document.querySelector('.tag.filter[data-open]');
+const addButton = document.querySelectorAll('.tag[data-add]');
+const listOfFilters = document.querySelector('.list-of-filters');
+const wrapper = document.querySelector('.wrapper');
+const articles = document.querySelectorAll('article');
+const searchInput = document.querySelector('.search-form input');
+
+const updateArticles = () => {
+  const activeFilters = Array.from(wrapper.querySelectorAll('.tag[data-close]')).map((button) =>
+    button.getAttribute('data-close')
+  );
+  const searchText = searchInput.value.trim().toLowerCase();
+  const searchWords = searchText.split(/\s+/);
+
+  articles.forEach((article) => {
+    const articleTitle = article.querySelector('h3').textContent.toLowerCase();
+    const articleFilters = Array.from(article.classList).filter((className) =>
+      className.startsWith('filter-')
+    );
+    const hasMatchingFilter =
+      activeFilters.length === 0 ||
+      activeFilters.some((filter) => articleFilters.includes(`filter-${filter}`));
+    const hasMatchingTitle =
+      searchWords.length === 0 ||
+      searchWords.some(
+        (word) =>
+          articleTitle.includes(word) ||
+          articleFilters.some((className) => className.includes(`filter-${word}`))
+      );
+    if (hasMatchingFilter && hasMatchingTitle) {
+      article.classList.remove('hidden');
+    } else {
+      article.classList.add('hidden');
+    }
+  });
+};
+
+const addCloseButtonListener = (button) => {
+  button.addEventListener('click', () => {
+    button.remove();
+    updateArticles();
+  });
+};
+
+openButton.addEventListener('click', () => {
+  listOfFilters.classList.toggle('show');
+});
+
+addButton.forEach((button) => {
+  button.addEventListener('click', () => {
+    const filterName = button.getAttribute('data-add');
+    const existingTag = wrapper.querySelector(`.tag[data-close][data-close="${filterName}"]`);
+    if (!existingTag) {
+      const newTag = button.cloneNode(true);
+      newTag.setAttribute('data-close', filterName);
+      newTag.removeAttribute('data-add');
+      newTag.querySelector('i').classList.replace('fa-plus', 'fa-xmark');
+      wrapper.appendChild(newTag);
+      addCloseButtonListener(newTag);
+      updateArticles();
+    }
+  });
+});
+
+searchInput.addEventListener('input', updateArticles);
+
+wrapper.querySelectorAll('.tag[data-close]').forEach(addCloseButtonListener);
+
+</script>

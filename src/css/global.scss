@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,700;1,9..40,400;1,9..40,700&display=swap");
+
+:root {
+  --main-dark: 0 0% 9%;
+  --main-light: 0 0% 100%;
+
+  --main-color: 240 85% 75%;
+  --main-shadow: 240 50% 50%;
+  --important: 240 100% 70%;
+
+  --active: 110 70% 65%;
+  --inactive: 0 0% 40%;
+  --danger: 0 70% 70%;
+
+  --text: 0 0% 14%;
+  --text-gray: 0 0% 50%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+@for $i from 1 through 6 {
+  h#{$i}:not(h1) {
+    margin: 0;
+    font-size: clamp(0.75rem, 0.5909rem + 0.7273vw, 1rem);
+  }
+
+  p {
+    margin: 0;
+    font-size: clamp(0.75rem, 0.5909rem + 0.7273vw, 1rem);
+  }
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(0.875rem, 0.7955rem + 0.3636vw, 1rem);
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  overflow: hidden;
+}
+
+main {
+    width: 100%;
+    max-width: 800px;
+    margin-inline: auto;
+    position: relative;
+}
+
+section {
+  margin-block-end: 1rem;
+  border-radius: 0.25rem;
+}
+
+// utility classes
+.circle {
+  width: 1.25rem;
+  aspect-ratio: 1;
+  background-color: hsl(var(--inactive));
+  border-radius: 50%;
+
+  &:is(.active) {
+    background-color: hsl(var(--active));
+    box-shadow: 0 0 20px hsl(var(--active) / 0.8);
+  }
+}

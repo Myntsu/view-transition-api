@@ -1,0 +1,79 @@
+<div class="main-background"></div>
+<header>
+  <div class="user">
+    <div class="avatar">
+      <img
+        src="https://pbs.twimg.com/profile_images/1684724496874311681/6ggZbDKB_400x400.jpg"
+        alt="Avatar"
+      />
+    </div>
+    <span class="user-welcome">Hola Luis 👋</span>
+  </div>
+  <div class="settings">
+    <i class="fa-solid fa-gear"></i>
+  </div>
+</header>
+
+<style lang="scss">
+  .main-background {
+    --phone-width: 100%;
+    --phone-height: 170px;
+    position: absolute;
+    background: hsl(var(--main-color));
+    width: var(--phone-width);
+    height: var(--phone-height);
+    z-index: -1;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    color: hsl(var(--main-light));
+    padding: 1rem;
+
+    .fa-solid {
+      font-size: 1.55rem;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .avatar {
+        display: flex;
+        align-items: center;
+        border: 1px solid hsl(var(--main-light));
+        border-radius: 50%;
+        box-shadow: 2px 2px 0 hsl(var(--main-shadow));
+        cursor: pointer;
+
+        img {
+          display: block;
+          max-width: 50px;
+          object-fit: contain;
+          border-radius: 50%;
+        }
+      }
+
+      .user-welcome {
+        color: hsl(0 0% 100%);
+        font-weight: 900;
+        text-shadow: 2px 2px 0 hsl(var(--main-shadow) / 0.5);
+      }
+    }
+
+    .settings {
+      color: hsl(0 0% 100%);
+      cursor: pointer;
+
+      i {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-shadow: 2px 2px 0 hsl(var(--main-shadow));
+      }
+    }
+  }
+</style>

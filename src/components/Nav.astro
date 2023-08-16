@@ -1,0 +1,65 @@
+<footer transition:persist >
+    <nav>
+        <a
+        href=""
+        class="active">
+        <i class="fa-solid fa-house"></i>
+        <span class="text">Inicio</span>
+        </a>
+        <a href="">
+        <i class="fa-solid fa-hand-fist"></i>
+        <span class="text">Desafíos</span>
+        </a>
+        <a href="">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span class="text">Cursos</span>
+        </a>
+        <a href="">
+        <i class="fa-solid fa-money-bill"></i>
+        <span class="text">Pagos</span>
+        </a>
+    </nav>
+</footer>
+
+<style lang="scss">
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 800px;
+    margin-inline: auto;
+    background-color: hsl(var(--main-color));
+
+    nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding-inline: 2rem;
+
+      a {
+        display: grid;
+        place-items: center;
+        gap: 0.25rem;
+        color: hsl(var(--main-light));
+        text-decoration: none;
+        padding-block: 0.75rem;
+
+        .text {
+          font-size: 0.75rem;
+        }
+
+        &:is(.active) {
+          color: hsl(var(--important));
+          background: hsl(var(--main-light));
+          .text {
+            font-weight: 900;
+          }
+        }
+
+        &:is(:hover, :focus, :focus-visible) {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+</style>
