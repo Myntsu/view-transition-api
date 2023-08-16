@@ -1,5 +1,15 @@
 ---
+// astro imports
+import { Icon } from 'astro-icon';
+
+// compontent imports
 import Module from "./Module.astro";
+
+const {
+  plusIcon = "ic:outline-plus",
+  crossIcon= "ic:baseline-close"
+} = Astro.props;
+
 ---
 
 <section class="courses">
@@ -7,7 +17,7 @@ import Module from "./Module.astro";
   <div class="search-form">
     <input
       type="text"
-      placeholder="Modulo 1"
+      placeholder="Buscar: Modulo 1"
       name="search"
     />
     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -17,35 +27,41 @@ import Module from "./Module.astro";
     <div class="white-blur"></div>
     <div class="wrapper">
       <button class="tag filter" data-open>
-        <i class="fa-solid fa-plus"></i>
+        <Icon class="icon" name={plusIcon} />
       </button>
       <h2>Filtros:</h2>
     </div>
   </div>
   <div class="list-of-filters">
     <button class="tag" data-add="g4">
-      <i class="fa-solid fa-plus"></i>
+      <Icon class="icon plus" name={plusIcon} />
       <span>G4</span>
+      <Icon class="icon cross" name={crossIcon} />
     </button>
     <button class="tag" data-add="g8">
-      <i class="fa-solid fa-plus"></i>
+      <Icon class="icon plus" name={plusIcon} />
       <span>G8</span>
+      <Icon class="icon cross" name={crossIcon} />
     </button>
     <button class="tag" data-add="presencial">
-      <i class="fa-solid fa-plus"></i>
+      <Icon class="icon plus" name={plusIcon} />
       <span>Presencial</span>
+      <Icon class="icon cross" name={crossIcon} />
     </button>
     <button class="tag" data-add="remoto">
-      <i class="fa-solid fa-plus"></i>
+      <Icon class="icon plus" name={plusIcon} />
       <span>Remoto</span>
+      <Icon class="icon cross" name={crossIcon} />
     </button>
     <button class="tag" data-add="diurno">
-      <i class="fa-solid fa-plus"></i>
+      <Icon class="icon plus" name={plusIcon} />
       <span>Diurno</span>
+      <Icon class="icon cross" name={crossIcon} />
     </button>
     <button class="tag" data-add="vespertino">
-      <i class="fa-solid fa-plus"></i>
+      <Icon class="icon plus" name={plusIcon} />
       <span>Vespertino</span>
+      <Icon class="icon cross" name={crossIcon} />
     </button>
   </div>
   <div class="modules-section">
@@ -65,7 +81,7 @@ import Module from "./Module.astro";
     border-radius: 0.15rem;
     font-size: 0.7rem;
     font-weight: 900;
-    line-height: 1;
+    line-height: 0;
     user-select: none;
 
     &:is(:active) {
@@ -76,17 +92,36 @@ import Module from "./Module.astro";
       opacity: 0.9;
     }
 
+    &:is([data-open]) {
+      .icon {
+        display: inline;
+      }
+    }
+
     &:is([data-close]) {
       &:is(:hover, :focus-visible) {
         background-color: hsl(var(--danger));
       }
+
+      .cross {
+        display: inline !important;
+      }
     }
 
     &:is([data-add]) {
-        background-color: hsl(var(--inactive));
+      background-color: hsl(var(--inactive));
+
       &:is(:hover, :focus-visible) {
         background-color: hsl(var(--important));
       }
+
+      .plus {
+        display: inline !important;
+      }
+    }
+
+    .icon {
+      display: none;
     }
   }
 
@@ -99,7 +134,7 @@ import Module from "./Module.astro";
 
     &:has(.show) {
       .filters {
-        margin-block-end: .5rem;
+        margin-block-end: .25rem;
       }
     }
 
@@ -177,16 +212,15 @@ import Module from "./Module.astro";
 
       .wrapper {
         display: flex;
-        align-items: baseline;
         gap: 0.5rem;
         width: 100%;
         height: 100%;
         overflow-x: auto;
-        z-index: 2;
 
         h2 {
           font-size: 0.75rem;
-          line-height: 0;
+          align-self: center;
+          margin: 0;
         }
       }
     }
@@ -202,7 +236,7 @@ import Module from "./Module.astro";
       
       &:is(.show) {
         translate: 0% 0%;
-        height: 40px;
+        height: 45px;
         border-radius: .25rem;
         margin-block-end: 1rem;
       }
@@ -272,7 +306,6 @@ addButton.forEach((button) => {
       const newTag = button.cloneNode(true);
       newTag.setAttribute('data-close', filterName);
       newTag.removeAttribute('data-add');
-      newTag.querySelector('i').classList.replace('fa-plus', 'fa-xmark');
       wrapper.appendChild(newTag);
       addCloseButtonListener(newTag);
       updateArticles();

@@ -77,3 +77,9 @@ section {
     box-shadow: 0 0 20px hsl(var(--active) / 0.8);
   }
 }
+
+.icon {
+    width: 16px;
+    aspect-ratio: 1;
+    line-height: 1;
+}
