@@ -1,26 +1,42 @@
 ---
 // json imports
-import modules from '../../json/modules.json';
+import modules from "../../json/modules.json";
 
-const moduleData = Object.values(modules).map((module) => {
-  return {
-    module: module.module,
-    title: module.title,
-    type: module.type,
-    active: module.active,
-    startingDate: module['starting-date'],
-    endingDate: module['ending-date'],
-  };
-});
+const moduleData = Object.values(modules)
+  .map((module) => {
+    return {
+      module: module.module,
+      title: module.title,
+      type: module.type,
+      active: module.active,
+      startingDate: module["starting-date"],
+      endingDate: module["ending-date"],
+    };
+  })
+  .sort((a, b) => {
+    if (a.active && !b.active) {
+      return -1;
+    } else if (!a.active && b.active) {
+      return 1;
+    } else if (a.type === "Finalizado" && b.type !== "Finalizado") {
+      return 1;
+    } else if (a.type !== "Finalizado" && b.type === "Finalizado") {
+      return -1;
+    } else {
+      return new Date(a.startingDate) - new Date(b.startingDate);
+    }
+  });
 ---
 
 <section>
-    {moduleData.map((module) => (
+  {
+    moduleData.map((module) => (
       <article
-        class={`${
-          module.active ? 'active' : ''
-        } filter-g8 filter-vespertino filter-remoto filter-${module.module} filter-lunes filter-martes filter-miercoles filter-jueves filter-viernes`}
-      >
+        class={`${module.active ? "active" : ""} ${
+          module.type === "Finalizado" ? "ended" : ""
+        } filter-g8 filter-vespertino filter-remoto filter-${
+          module.module
+        } filter-lunes filter-martes filter-miercoles filter-jueves filter-viernes`}>
         <div class="title">
           <h3>{module.module}</h3>
           <span class="course-type">{module.type}</span>
@@ -28,26 +44,27 @@ const moduleData = Object.values(modules).map((module) => {
         <div class="course-information">
           <div class="title-activity">
             <h4>{module.title}</h4>
-            <div class={`circle ${module.active ? 'active' : ''}`}></div>
+            <div class={`circle ${module.active ? "active" : ""}`} />
           </div>
           <hr />
           <div class="duration">
             <p>
-              <i class="fa-solid fa-calendar-days"></i> Comienzo 
+              <i class="fa-solid fa-calendar-days" /> Comienzo
               <span class="date">{module.startingDate}</span>
             </p>
             <p>
-              <i class="fa-solid fa-square-check"></i> Término 
+              <i class="fa-solid fa-square-check" /> Término
               <span class="date">{module.endingDate}</span>
             </p>
           </div>
         </div>
       </article>
-    ))}
-  </section>
+    ))
+  }
+</section>
 
 <style lang="scss">
-      .hidden {
+  .hidden {
     display: none !important;
   }
 
@@ -55,6 +72,8 @@ const moduleData = Object.values(modules).map((module) => {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
     gap: 1rem;
+
+    padding-block-end: 2rem;
   }
 
   article {
@@ -74,6 +93,17 @@ const moduleData = Object.values(modules).map((module) => {
         h4 {
           color: hsl(var(--main-light)) !important;
         }
+      }
+    }
+
+    &:is(.ended) {
+      .course-information {
+        color: hsl(var(--main-light) / .7);
+        background-color: hsl(var(--text-gray)) !important;
+      }
+
+      h4 {
+          color: hsl(var(--main-light)) !important;
       }
     }
 
