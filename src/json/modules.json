@@ -1,0 +1,82 @@
+{
+    "module-1": {
+        "module": "Módulo 1",
+        "title": "DOrientación al perfil y metdología del curso",
+        "type": "Finalizado",
+        "active": false,
+        "starting-date": "24/04/2023",
+        "ending-date": "28/04/2023"
+    },
+    "module-2": {
+        "module": "Módulo 2",
+        "title": "Fundamentos de desarrollo front-end",
+        "type": "Finalizado",
+        "active": false,
+        "starting-date": "02/05/2023",
+        "ending-date": "25/05/2023"
+    },
+    "module-3": {
+        "module": "Módulo 3",
+        "title": "Fundamentos de bases de datos relacionales",
+        "type": "Finalizado",
+        "active": false,
+        "starting-date": "26/05/2023",
+        "ending-date": "14/06/2023"
+    },
+    "module-4": {
+        "module": "Módulo 4",
+        "title": "Introducción a la programación con Ruby",
+        "type": "Finalizado",
+        "active": false,
+        "starting-date": "15/06/2023",
+        "ending-date": "14/07/2023"
+    },
+    "module-5": {
+        "module": "Módulo 5",
+        "title": "Introducción a desarrollo de aplicaciones con Ruby on Rails",
+        "type": "Finalizado",
+        "active": false,
+        "starting-date": "17/07/2023",
+        "ending-date": "04/08/2023"
+    },
+    "module-6": {
+        "module": "Módulo 6",
+        "title": "Desarrollo de aplicaciones con Ruby on Rails",
+        "type": "Activo",
+        "active": true,
+        "starting-date": "07/08/2023",
+        "ending-date": "29/08/2023"
+    },
+    "module-7": {
+        "module": "Módulo 7",
+        "title": "Ideación y diseño del producto",
+        "type": "En espera",
+        "active": false,
+        "starting-date": "29/08/2023",
+        "ending-date": "15/09/2023"
+    },
+    "module-8": {
+        "module": "Módulo 8",
+        "title": "Introducción al Emprendimiento y Startups",
+        "type": "En espera",
+        "active": false,
+        "starting-date": "20/09/2023",
+        "ending-date": "05/10/2023"
+    },
+    "module-9": {
+        "module": "Módulo 9",
+        "title": "Desarrollo de portafolio de un producto digital",
+        "type": "En espera",
+        "active": false,
+        "starting-date": "06/10/2023",
+        "ending-date": "13/10/2023"
+    },
+    "module-10": {
+        "module": "Módulo 10",
+        "title": "Presentación del producto a inversores",
+        "type": "En espera",
+        "active": false,
+        "starting-date": "16/10/2023",
+        "ending-date": "23/10/2023"
+    }
+}

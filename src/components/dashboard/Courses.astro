@@ -230,7 +230,7 @@ const updateArticles = () => {
     );
     const hasMatchingFilter =
       activeFilters.length === 0 ||
-      activeFilters.some((filter) => articleFilters.includes(`filter-${filter}`));
+      activeFilters.every((filter) => articleFilters.includes(`filter-${filter}`));
     const hasMatchingTitle =
       searchWords.length === 0 ||
       searchWords.some(

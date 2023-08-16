@@ -1,72 +1,50 @@
 ---
+// json imports
+import modules from '../../json/modules.json';
 
+const moduleData = Object.values(modules).map((module) => {
+  return {
+    module: module.module,
+    title: module.title,
+    type: module.type,
+    active: module.active,
+    startingDate: module['starting-date'],
+    endingDate: module['ending-date'],
+  };
+});
 ---
+
 <section>
-  <article class="active filter-g8 filter-vespertino filter-remoto filter-modulo-6">
-    <div class="title">
-      <h3>Módulo 6</h3>
-      <span class="course-type">Activo</span>
-    </div>
-    <div class="course-information">
-      <div class="title-activity">
-        <h4>Desarrollo de aplicaciones con Ruby on Rails</h4>
-        <div class="circle active"></div>
-      </div>
-      <hr />
-      <div class="duration">
-        <p>
-          <i class="fa-solid fa-calendar-days"></i> Comienzo <span class="date"
-            >07/08/2023</span
-          >
-        </p>
-        <p>
-          <i class="fa-solid fa-square-check"></i> Término <span class="date"
-            >29/08/2023</span
-          >
-        </p>
-      </div>
-    </div>
-  </article>
-  <article>
-    <div class="title">
-      <h3>Módulo 5</h3>
-      <span class="course-type">Finalizado</span>
-    </div>
-    <div class="course-information">
-      <div class="title-activity">
-        <h4>Introducción a desarrolllo de aplicaciones con Ruby on Rails</h4>
-        <div class="circle"></div>
-      </div>
-      <hr />
-      <div class="duration">
-        <p>
-          <i class="fa-solid fa-calendar-days"></i> Comienzo <span class="date"
-            >07/08/2023</span
-          >
-        </p>
-        <p>
-          <i class="fa-solid fa-square-check"></i> Término <span class="date"
-            >29/08/2023</span
-          >
-        </p>
-      </div>
-    </div>
-  </article>
-  <article>
-    <div class="title">
-      <h3>Módulo 6</h3>
-      <span class="course-type">G8</span>
-    </div>
-    <div class="course-information"></div>
-  </article>
-  <article>
-    <div class="title">
-      <h3>Módulo 6</h3>
-      <span class="course-type">G8</span>
-    </div>
-    <div class="course-information"></div>
-  </article>
-</section>
+    {moduleData.map((module) => (
+      <article
+        class={`${
+          module.active ? 'active' : ''
+        } filter-g8 filter-vespertino filter-remoto filter-${module.module} filter-lunes filter-martes filter-miercoles filter-jueves filter-viernes`}
+      >
+        <div class="title">
+          <h3>{module.module}</h3>
+          <span class="course-type">{module.type}</span>
+        </div>
+        <div class="course-information">
+          <div class="title-activity">
+            <h4>{module.title}</h4>
+            <div class={`circle ${module.active ? 'active' : ''}`}></div>
+          </div>
+          <hr />
+          <div class="duration">
+            <p>
+              <i class="fa-solid fa-calendar-days"></i> Comienzo 
+              <span class="date">{module.startingDate}</span>
+            </p>
+            <p>
+              <i class="fa-solid fa-square-check"></i> Término 
+              <span class="date">{module.endingDate}</span>
+            </p>
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
 
 <style lang="scss">
       .hidden {
