@@ -4,19 +4,17 @@ import { Icon } from "astro-icon";
 ---
 
 <footer>
-  <nav>
+  <nav transition:persist>
     <a
-      transition:persist
       href="/"
-      class="active">
+      >
       <Icon
         class="icon"
         name="ic:baseline-house"
       />
       <span class="text">Inicio</span>
     </a>
-    <a
-      transition:persist 
+    <a 
       href="/challenges">
       <Icon
         class="icon"
@@ -24,8 +22,7 @@ import { Icon } from "astro-icon";
       />
       <span class="text">Desafíos</span>
     </a>
-    <a
-      transition:persist 
+    <a 
       href="/courses">
       <Icon
         class="icon"
@@ -34,7 +31,6 @@ import { Icon } from "astro-icon";
       <span class="text">Cursos</span>
     </a>
     <a
-      transition:persist
       href="/payments">
       <Icon
         class="icon"
@@ -93,12 +89,10 @@ import { Icon } from "astro-icon";
 </style>
 
 <script>
-const links = document.querySelectorAll('a');
-
 const updateActiveLink = () => {
-  console.log('Updating active link...');
 
   const currentPage = window.location.pathname;
+  const links = document.querySelectorAll('a');
 
   links.forEach(link => {
     if (link.getAttribute('href') === currentPage) {
@@ -109,10 +103,8 @@ const updateActiveLink = () => {
   });
 };
 
-
 // Runs on initial navigation
 document.addEventListener('astro:load', () => {
-  console.log('astro:load event fired');
   updateActiveLink();
 });
 </script>
