@@ -21,7 +21,7 @@ const {
 
 ---
 
-<section class="courses">
+<section class="courses" transition:persist>
   <h2>Cursos</h2>
   <div class="search-form">
     <input
@@ -183,6 +183,7 @@ const {
     .filters {
       margin-block-end: 1rem;
       position: relative;
+      isolation: isolate;
 
       .white-blur {
         content: "";

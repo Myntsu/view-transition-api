@@ -15,14 +15,16 @@ import { Icon } from "astro-icon";
   <hr />
   <h3>Notificaciones</h3>
   <div class="notifications">
-    <div>
+    <div transition:name="brayan">
+      <a class="expanded-link" href="/notifications/notification-1"></a>
       <p>
         <Icon class="icon" name="ic:baseline-notifications-active" /> 
         Brayan ha revisado tu desafío 
         <Icon class="icon" name="ic:baseline-plus" />
       </p>
     </div>
-    <div>
+    <div transition:name="course-closing">
+      <a class="expanded-link" href="/notifications/notification-2"></a>
       <p>
         <Icon class="icon" name="ic:baseline-notifications-active" /> 
         Módulo 6 cierra en 2 días 
@@ -82,13 +84,16 @@ import { Icon } from "astro-icon";
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     & > div {
       padding: 0.5rem;
       background-color: hsl(var(--important));
       border-radius: 0.25rem;
       cursor: pointer;
+
+      position: relative;
 
       p {
         display: flex;
