@@ -2,25 +2,31 @@
 import Head from "../components/Head.astro";
 import Nav from "../components/Nav.astro";
 
-import '../css/global.scss';
+import "../css/global.scss";
 
 interface Props {
-    title: string,
-    description: string,
+  title: string;
+  description: string;
 }
 
-const {
-    title,
-    description
-} = Astro.props as Props;
-
+const { title, description } = Astro.props as Props;
 ---
+
 <html lang="en">
-    <Head {title} {description} />
-<body>
+  <Head
+    {title}
+    {description}
+  />
+  <body>
     <main>
-        <Nav />
-        <slot />
+      <Nav />
+      <slot />
     </main>
-</body>
+
+    <script
+      transition:persist
+      src="https://kit.fontawesome.com/76c49369ed.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
