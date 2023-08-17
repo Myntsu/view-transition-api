@@ -17,7 +17,7 @@ import Courses from "../components/dashboard/Courses.astro";
 	<Header />
 	<div class="sections">
 		<UserFeedback />
-		<Courses />
+		<Courses transition:persist transition:name="courses" />
 	</div>
 </Layout>
 
